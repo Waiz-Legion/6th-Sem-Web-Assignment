@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>UpperCase</title>
+        <style>
+            #container-form{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 20%;
+                position: absolute;
+                transform: translate(-50% -50%);
+                top: 30%;
+                left: 40%;
+                
+                width: 30%;
+                height: 40%;
+                box-shadow: 10px 10px 20px #6e6e6e;
+                border-radius: 20px;
+            }
+            #result{
+                display: block;
+                position: relative;
+                
+                word-wrap: break-word;
+                margin-top: 5%;
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: large;
+                color: rgb(42, 180, 0);
+            }
+            input[type = 'text']{
+                border-style: none;
+                position: relative;
+                width: 70%;
+                height: 10%;
+                border-radius: 10px;
+                text-align: center;
+                border: 1px solid rgb(201, 201, 201);
+            }
+            input[type = 'text']:focus{
+                outline: none;
+                border: 1px solid rgb(109, 177, 255);
+            }
+            input[type = 'text']:focus ~ .form-label,
+            input[type = 'text']:hover ~ .form-label,
+            input[type = 'text']:valid ~ .form-label{
+                font-size: 15px;
+                top: -22%;
+                color: rgba(0, 0, 0, 1);
+                background-color: white;
+                
+            }
+            .form-label{
+                position: relative;
+                top: -15%;
+                color: rgba(0, 0, 0, 0.4);
+                transition: 0.5s;
+                padding-left: 5px;
+                padding-right: 5px
+            }
+            .form-label:hover{
+                top: -21%;
+                
+                font-size: 15px;
+                color: black;
+                cursor: text;
+            }
+            input[type = 'text']::placeholder{
+                color: transparent;
+            }
+            #btn{
+                position: relative;
+                width: 30%;
+                height: 10%;
+                border: none;
+                background-color: rgb(0, 197, 99);
+                border-radius: 50px;
+                cursor: pointer;
+                transition: linear 0.2s;
+                color:black;
+            }
+            #btn:hover{
+                font-size: 15px;
+                width: 32%;
+                background-color: white;
+                color: green;
+                border: 1px solid rgb(0, 197, 99);
+                
+            }
+            @-moz-document url-prefix(){
+                .form-label{
+                    top: -10%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container-form">
+            <input type="text" id="en-num" placeholder="Number" required/><br/>
+            <label for="number" class = 'form-label'>Enter Text</label>
+            <button type="button" id="btn">To Uppercase</button>
+            <div id="result"></div>
+        </div>
+        <script>
+            document.querySelector('button').addEventListener('click', function(){
+                var text = document.getElementById('en-num').value;
+                var res  = document.getElementById('result');
+                var regex = /^[A-Za-z]+$/;
+                if(text.match(regex)){
+                    res.style.color = 'rgb(48, 84, 247)';
+                    res.innerHTML = text.toUpperCase();
+                }
+                else{
+                    res.style.color = 'red';
+                    res.innerHTML = "Only alphabets allowed!!!";
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Password Check
+        </title>
+        <style>
+            
+            
+            #container-form{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 20%;
+                position: absolute;
+                transform: translate(-50% -50%);
+                top: 30%;
+                left: 40%;
+                
+                width: 30%;
+                height: 60%;
+                box-shadow: 10px 10px 20px #6e6e6e;
+                border-radius: 20px;
+            }
+            #result{
+                display: block;
+                position: relative;
+                
+                word-wrap: break-word;
+                margin-top: 5%;
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: large;
+                color: rgb(42, 180, 0);
+            }
+            input[type = 'text']{
+                border-style: none;
+                position: relative;
+                width: 70%;
+                height: 10%;
+                border-radius: 10px;
+                text-align: center;
+                border-bottom: 1px solid rgb(201, 201, 201);
+                
+            }
+            input[type = 'text']:focus{
+                outline: none;
+                border-bottom: 1px solid dodgerblue;
+            }
+            #en-num:focus ~ #form-lbl1,
+            #en-num:hover ~ #form-lbl1,
+            #en-num:valid ~ #form-lbl1{
+                font-size: 15px;
+                top: -18%;
+                color: rgba(0, 0, 0, 1);
+                background-color: white;
+                
+            }
+            #en-pass:focus ~ #form-lbl2,
+            #en-pass:hover ~ #form-lbl2,
+            #en-pass:valid ~ #form-lbl2{
+                font-size: 15px;
+                top: -18%;
+                color: rgba(0, 0, 0, 1);
+                background-color: white;
+                
+            }
+            #en-pass2:focus ~ #form-lbl3,
+            #en-pass2:hover ~ #form-lbl3,
+            #en-pass2:valid ~ #form-lbl3{
+                font-size: 15px;
+                top: -18%;
+                color: rgba(0, 0, 0, 1);
+                background-color: white;
+                
+            }
+            .form-label{
+                position: relative;
+                top: -12%;
+                color: rgba(0, 0, 0, 0.4);
+                transition: 0.5s;
+                padding-left: 5px;
+                padding-right: 5px
+            }
+            .form-label:hover{
+                top: -17%;
+                
+                font-size: 15px;
+                color: black;
+                cursor: text;
+            }
+            input[type = 'text']::placeholder{
+                color: transparent;
+            }
+            #btn{
+                position: relative;
+                width: 30%;
+                height: 10%;
+                border: none;
+                background-color: dodgerblue;
+                border-radius: 50px;
+                cursor: pointer;
+                transition: linear 0.2s;
+                color:White;
+                font-size: large;
+            }
+            #btn:hover{
+                font-size: large;
+                width: 32%;
+                background-color: white;
+                color: green;
+                border: 1px solid dodgerblue;
+                
+            }
+            @-moz-document url-prefix(){
+                .form-label{
+                    top: -10%;
+                }
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div id="container-form">
+            <input type="text" id="en-num" placeholder="Number" required/><br/>
+            <label for="number" class = 'form-label' id="form-lbl1">Enter Name</label>
+            <input type="text" id="en-pass" placeholder="Number" required/><br/>
+            <label for="number" class = 'form-label' id="form-lbl2">Old Password</label>
+            <input type="text" id="en-pass2" placeholder="Number" required/><br/>
+            <label for="number" class = 'form-label' id="form-lbl3">New Password </label>
+            <button type="button" id="btn">Check</button>
+            <div id="result"></div>
+        </div>
+        <script>
+            document.querySelector('button').addEventListener('click', function(){
+                var name = document.getElementById('en-num').value;
+                var res = document.getElementById('result');
+                var oldPass = document.getElementById('en-pass').value;
+                var newPass = document.getElementById('en-pass2').value;
+                var regex = /^(?=.*[A-Z]).*$/;
+                var userRegex = /^.{0}A|a^.{1}D|d^.{2}M|m^.{3}I|i^.{4}N|n{6}$/;
+                if(name == ''){
+                    res.innerHTML = "Username CANNOT be empty";
+                    res.style.color = 'red';
+                    document.getElementById('en-num').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('form-lbl1').style.backgroundColor = 'rgb(255, 105, 105)';
+
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+                else if(name.length == 5 && name == 'ADMIN' || name == 'admin' || name == 'Admin'){
+                    res.innerHTML = "ADMIN PASSWORD OK";
+                    res.style.color = 'green';
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+                else if(oldPass.length <= 7){
+                    res.innerHTML = 'Password CANNOT be less than 8 digits.'
+                    res.style.color = 'red';
+                    document.getElementById('form-lbl2').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('en-pass').style.backgroundColor = 'rgb(255, 105, 105)';
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+                else if(newPass.length <=7){
+                    res.innerHTML = 'Password CANNOT be less than 8 digits.'
+                    res.style.color = 'red';
+                    document.getElementById('form-lbl3').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('en-pass2').style.backgroundColor = 'rgb(255, 105, 105)';
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+                else if(!oldPass.match(regex)){
+                    res.innerHTML = ' Old Password SHOULD have an uppercase letter.'
+                    res.style.color = 'red';
+                    document.getElementById('form-lbl2').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('en-pass').style.backgroundColor = 'rgb(255, 105, 105)';
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+                else if(!newPass.match(regex)){
+                    res.innerHTML = 'New Password SHOULD have an uppercase letter.'
+                    res.style.color = 'red';
+                    document.getElementById('form-lbl3').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('en-pass2').style.backgroundColor = 'rgb(255, 105, 105)';
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+                else if(newPass === oldPass){
+                    res.innerHTML = 'Old and New password CANNOT be equal.'
+                    res.style.color = 'red';
+                    document.getElementById('form-lbl3').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('en-pass2').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('form-lbl2').style.backgroundColor = 'rgb(255, 105, 105)';
+                    document.getElementById('en-pass').style.backgroundColor = 'rgb(255, 105, 105)';
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+                else{
+                    res.innerHTML = "PASSWORD OK";
+                    res.style.color = 'green';
+                    document.getElementById('form-lbl3').style.backgroundColor = 'none';
+                    document.getElementById('en-pass2').style.backgroundColor = 'rgb(147, 255, 143)';
+                    document.getElementById('form-lbl2').style.backgroundColor = 'none';
+                    document.getElementById('en-pass').style.backgroundColor = 'rgb(147, 255, 143)';
+                    document.getElementById('en-num').style.backgroundColor = 'rgb(147, 255, 143)';
+                    document.getElementById('form-lbl1').style.backgroundColor = 'none';
+                    document.getElementById('form-lbl1').style.borderRadius = '10px';
+                    document.getElementById('form-lbl2').style.borderRadius = '10px';
+                    document.getElementById('form-lbl3').style.borderRadius = '10px';
+                    setTimeout(function(){window.location.reload();}, 5000);
+                }
+            });
+        </script>
+    </body>
+</html>

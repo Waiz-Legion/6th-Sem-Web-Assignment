@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+#container2{
+    
+    margin: 5%;
+}
+
+#cont-box{
+    left: 20%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    margin-top: 3%;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 5px 5px 10px #6e6e6e6e;
+}
+
+#assignment{
+
+    position: relative;
+    margin: 3%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#asg-content{
+    position: relative;
+    margin-bottom: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+    word-wrap: break-word;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    display: none;
+}
+#btn-div{
+    display: none;
+}
+#assignment:focus + #asg-content{
+    display: block;
+}
+#done{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+#done5{
+    position: relative;
+    
+    width: 100%;
+    height: 150%;
+    border-style: none;
+    background: linear-gradient(90deg, purple, red);
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+#sol{
+    background-color: aqua;
+    position: relative;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+
+}
+

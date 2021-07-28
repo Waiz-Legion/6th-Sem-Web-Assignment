@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Fibonacci numbers
+        </title>
+        <style>
+            
+            
+            #container-form{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 20%;
+                position: absolute;
+                transform: translate(-50% -50%);
+                top: 30%;
+                left: 40%;
+                
+                width: 30%;
+                height: 40%;
+                box-shadow: 10px 10px 20px #6e6e6e;
+                border-radius: 20px;
+            }
+            #result{
+                display: block;
+                position: relative;
+                
+                word-wrap: break-word;
+                margin-top: 5%;
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: large;
+                color: rgb(42, 180, 0);
+            }
+            input[type = 'number']{
+                border-style: none;
+                position: relative;
+                width: 70%;
+                height: 10%;
+                border-radius: 10px;
+                text-align: center;
+                border: 1px solid rgb(201, 201, 201);
+            }
+            input[type = 'number']:focus{
+                outline: none;
+                border: 1px solid rgb(109, 177, 255);
+            }
+            input[type = 'number']:focus ~ .form-label,
+            input[type = 'number']:hover ~ .form-label,
+            input[type = 'number']:valid ~ .form-label{
+                font-size: 15px;
+                top: -22%;
+                color: rgba(0, 0, 0, 1);
+                background-color: white;
+                
+            }
+            .form-label{
+                position: relative;
+                top: -15%;
+                color: rgba(0, 0, 0, 0.4);
+                transition: 0.5s;
+                padding-left: 5px;
+                padding-right: 5px
+            }
+            .form-label:hover{
+                top: -21%;
+                
+                font-size: 15px;
+                color: black;
+                cursor: text;
+            }
+            input[type = 'number']::placeholder{
+                color: transparent;
+            }
+            #btn{
+                position: relative;
+                width: 30%;
+                height: 10%;
+                border: none;
+                background-color: rgb(0, 197, 99);
+                border-radius: 50px;
+                cursor: pointer;
+                transition: linear 0.2s;
+                color:black;
+            }
+            #btn:hover{
+                font-size: 15px;
+                width: 32%;
+                background-color: white;
+                color: green;
+                border: 1px solid rgb(0, 197, 99);
+                
+            }
+            @-moz-document url-prefix(){
+                .form-label{
+                    top: -10%;
+                }
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div id="container-form">
+            <input type="number" id="en-num" placeholder="Number" required/><br/>
+            <label for="number" class = 'form-label'>Enter Number</label>
+            <button type="button" id="btn">Find Sequence</button>
+            <div id="result"></div>
+        </div>
+        <script>
+            document.querySelector('button').addEventListener('click', function(){
+                var num = document.getElementById('en-num').value;
+                var res = document.getElementById('result');
+                res.innerHTML = '';
+                if(num == '' || num <= 0){
+                    res.style.fontSize = '25px'
+                    res.style.color = 'red'
+                    res.innerHTML = 'Value CANNOT be equal or less than Zero';
+                }
+                var fib = [0,1,1];
+                for(let i=3; i < num; i++){
+                    fib.push(fib[i-1] + fib[i-2]);
+
+                }
+                for(let i = 0; i<num; i++){
+                    res.innerHTML += '[' + fib[i] +']' + '&nbsp &nbsp';
+                };
+            });
+        </script>
+    </body>
+</html>
